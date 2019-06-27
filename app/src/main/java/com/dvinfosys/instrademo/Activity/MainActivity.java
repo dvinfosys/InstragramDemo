@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<PostModel> list;
     private RecyclerView rvPost;
     private CircleImageView imgProfile;
-    private TextView tvFullName, tvBiography, tvPostCount, tvFollowers, tvFollowing,tvNoPost;
+    private TextView tvFullName, tvBiography, tvPostCount, tvFollowers, tvFollowing, tvNoPost;
     private String imgProfileUrl, userName, FullName, Biography, PostCount, Followers, Following;
 
     @Override
@@ -75,19 +75,36 @@ public class MainActivity extends AppCompatActivity {
                             for (int i = 0; i < array.length(); i++) {
                                 JSONObject jsonObject = (JSONObject) array.get(i);
                                 JSONObject node = jsonObject.getJSONObject("node");
-                                String image = node.getString("display_url");
                                 PostModel model = new PostModel();
-                                model.setUrl(image);
+                                JSONObject caption = node.getJSONObject("edge_media_to_caption");
+                                JSONArray captionArray = caption.getJSONArray("edges");
+                                for (int a = 0; a < captionArray.length(); a++) {
+                                    JSONObject object = (JSONObject) captionArray.get(a);
+                                    model.setMediaCaption(object.getJSONObject("node").getString("text"));
+                                }
+                                model.setUserimage(imgProfileUrl);
+                                model.setUsername(userName);
+                                model.setUrl(node.getString("display_url"));
+                                model.setShortcode(node.getString("shortcode"));
+                                model.setIs_video(node.getString("is_video"));
+                                model.setTimestamp(node.getString("taken_at_timestamp"));
+                                model.setComment(node.getJSONObject("edge_media_to_comment").getString("count"));
+                                model.setLiked(node.getJSONObject("edge_liked_by").getString("count"));
+                                String location = node.getString("location");
+                                if (!location.equals("null"))
+                                    model.setLocation(node.getJSONObject("location").getString("name"));
+                                else
+                                    model.setLocation("");
                                 list.add(model);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
-                        if (!list.isEmpty()){
+                        if (!list.isEmpty()) {
                             tvNoPost.setVisibility(View.GONE);
                             rvPost.setVisibility(View.VISIBLE);
-                        }else {
+                        } else {
                             tvNoPost.setVisibility(View.VISIBLE);
                             rvPost.setVisibility(View.GONE);
                         }

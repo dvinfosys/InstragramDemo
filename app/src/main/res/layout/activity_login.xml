@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/_25sdp"
+        android:paddingTop="@dimen/_55sdp"
+        android:paddingRight="@dimen/_25sdp">
+
+        <com.dvinfosys.widgets.ImageView.CircleImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_75sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:src="@mipmap/ic_launcher_round" />
+
+
+        <com.dvinfosys.widgets.EditText.NormalEditText
+            android:id="@+id/input_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:inputType="text" />
+
+        <com.dvinfosys.widgets.EditText.NormalEditText
+            android:id="@+id/input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword" />
+
+
+        <com.dvinfosys.widgets.Button.NormalButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginBottom="@dimen/_25sdp"
+            android:background="@drawable/white_rounded_button"
+            android:padding="@dimen/_12sdp"
+            android:text="Login"
+            android:textAllCaps="false" />
+
+        <com.dvinfosys.widgets.TextView.NormalTextView
+            android:id="@+id/link_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_25sdp"
+            android:gravity="center"
+            android:text="No account yet? Create one"
+            android:textColor="@color/link_blue"
+            android:textSize="@dimen/_16sdp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
